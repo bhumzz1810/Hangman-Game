@@ -1,0 +1,105 @@
+<!-- STUDENT NAME: BHUMIL PARATE & STUDENT NUMBER: 8994642 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta information for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to external CSS file for custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Play Hangman - Hangman Game</title>
+</head>
+
+<body>
+    <!-- Header section with navigation menu -->
+    <header>
+        <nav>
+            <ul>
+                <!-- Navigation links to different pages -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="hangman.html">Play Hangman</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content area for the Hangman game -->
+    <main>
+        <h1>Hangman</h1>
+        <p>Find the hidden word - Press a letter</p>
+        <div class="game-container">
+            <!-- SVG graphic for Hangman figure -->
+            <svg height="250" width="200" class="figure-container">
+                <!-- Rod and base -->
+                <line x1="60" y1="20" x2="140" y2="20" /> <!-- Top horizontal line -->
+                <line x1="140" y1="20" x2="140" y2="50" /> <!-- Vertical line from the top -->
+                <line x1="60" y1="20" x2="60" y2="230" /> <!-- Vertical line from the base -->
+                <line x1="20" y1="230" x2="100" y2="230" /> <!-- Bottom horizontal line -->
+
+                <!-- Hangman figure parts -->
+                <circle cx="140" cy="70" r="20" class="figure-part" /> <!-- Head -->
+                <line x1="140" y1="90" x2="140" y2="150" class="figure-part" /> <!-- Body -->
+                <line x1="140" y1="120" x2="120" y2="100" class="figure-part" /> <!-- Left arm -->
+                <line x1="140" y1="120" x2="160" y2="100" class="figure-part" /> <!-- Right arm -->
+                <line x1="140" y1="150" x2="120" y2="180" class="figure-part" /> <!-- Left leg -->
+                <line x1="140" y1="150" x2="160" y2="180" class="figure-part" /> <!-- Right leg -->
+            </svg>
+
+            <!-- Container for displaying wrong guessed letters -->
+            <div class="wrong-letters-container">
+                <div id="wrong-letters"></div>
+            </div>
+
+            <!-- Container for displaying the current word with guessed letters -->
+            <div class="word" id="word"></div>
+        </div>
+
+        <!-- Popup for game end messages and replay option -->
+        <div class="popup-container" id="popup-container">
+            <div class="popup">
+                <h2 id="final-message"></h2> <!-- Message indicating win or loss -->
+                <h3 id="final-message-reveal-word"></h3> <!-- Revealed word if lost -->
+                <button id="play-button">Play Again</button> <!-- Button to restart the game -->
+            </div>
+        </div>
+
+        <!-- Notification for already entered letters -->
+        <div class="notification-container" id="notification-container">
+            <p>You have already entered this letter</p>
+        </div>
+
+        <!-- Link to external JavaScript file for game functionality -->
+        <script src="js/script.js"></script>
+    </main>
+
+    <!-- Footer section with copyright and clock -->
+    <footer>
+        <p>&copy; 2024 Hangman Game. All rights reserved.</p>
+        <div id="clock" class="clock-1">
+            <p id="current-time"></p>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript for updating the clock -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            // Update the content of the clock element
+            document.getElementById('current-time').textContent = timeString;
+        }
+
+        // Update clock every second
+        setInterval(updateClock, 1000);
+
+        // Initialize clock immediately
+        updateClock();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,272 @@
+/* STUDENT NAME: BHUMIL PARATE & STUDENT NUMBER: 8994642 */
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
+
+/* Root Variables */
+:root {
+  /* Define color variables for reuse throughout the stylesheet */
+  --primary-color: #1f2f61; /* Main background color */
+  --secondary-color: #224ca4; /* Secondary color for headers and accents */
+  --light-color: #a7c2da; /* Light color for text and other elements */
+  --hover-color: #f0f0f0; /* Hover color for links */
+  --animation-duration: 0.5s; /* Animation duration */
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+body {
+  background-color: var(--primary-color) !important; /* Set background color */
+  color: var(--light-color) !important; /* Set text color */
+  font-family: "DotGothic16", sans-serif; /* Set font family */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items in a column */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Hide overflow */
+  margin: 0; /* Remove default margin */
+}
+
+header {
+  width: 100%; /* Full width */
+  background-color: var(--secondary-color); /* Set background color */
+  padding: 10px 0; /* Vertical padding */
+}
+
+nav ul {
+  list-style: none; /* Remove default list styling */
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center items horizontally */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+nav ul li {
+  margin: 0 15px; /* Horizontal margin between list items */
+}
+
+nav ul li a {
+  color: var(--light-color); /* Set text color */
+  text-decoration: none; /* Remove underline from links */
+  font-size: 18px; /* Set font size */
+  transition: color var(--animation-duration) ease,
+    transform var(--animation-duration) ease; /* Add transition effect */
+}
+
+nav ul li a:hover {
+  color: var(--hover-color); /* Change text color on hover */
+  transform: scale(1.1); /* Scale up on hover */
+  text-decoration: none; /* Remove underline on hover */
+  border-radius: 8px; /* Round corners */
+  padding: 5px; /* Add padding */
+  box-shadow: 5px 5px 60px white, inset -5px -5px 60px lightblue; /* Add shadow effect */
+}
+
+main {
+  flex: 1; /* Flex grow to fill available space */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items in a column */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  text-align: center; /* Center text */
+}
+
+footer {
+  background-color: var(--secondary-color); /* Set background color */
+  width: 100%; /* Full width */
+  text-align: center; /* Center text */
+  padding: 10px 0; /* Vertical padding */
+  display: flex !important;
+  justify-content: space-evenly;
+}
+
+/* Hangman Game Styles */
+h1 {
+  margin: 20px 0 0; /* Margin around heading */
+  letter-spacing: 0.5rem; /* Space between letters */
+  text-transform: uppercase; /* Convert text to uppercase */
+}
+
+h2,
+h3 {
+  letter-spacing: 0.2rem; /* Space between letters */
+}
+
+.game-container {
+  padding: 20px 30px; /* Padding around the game container */
+  position: relative; /* Relative positioning for absolute children */
+  margin: auto; /* Center container horizontally */
+  height: 350px; /* Set height */
+  width: 450px; /* Set width */
+}
+
+.figure-container {
+  fill: transparent; /* Transparent fill for SVG figures */
+  stroke: var(--light-color); /* Set stroke color */
+  stroke-width: 4px; /* Set stroke width */
+  stroke-linecap: round; /* Round stroke ends */
+}
+
+.figure-part {
+  display: none; /* Hide figure parts initially */
+}
+
+.wrong-letters-container {
+  position: absolute; /* Absolute positioning */
+  top: 20px; /* Distance from top */
+  right: 20px; /* Distance from right */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items in a column */
+  text-align: right; /* Right-align text */
+}
+
+.wrong-letters-container p {
+  margin: 0 0 5px; /* Margin below paragraphs */
+}
+
+.wrong-letters-container span {
+  font-size: 24px; /* Set font size */
+}
+
+.word {
+  display: flex; /* Use flexbox for layout */
+  position: absolute; /* Absolute positioning */
+  bottom: 10px; /* Distance from bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+}
+
+.letter {
+  border-bottom: 3px solid var(--secondary-color); /* Border style */
+  display: inline-flex; /* Inline flexbox layout */
+  font-size: 30px; /* Set font size */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  margin: 0 3px; /* Horizontal margin */
+  height: 50px; /* Set height */
+  width: 20px; /* Set width */
+}
+
+.popup-container {
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  position: absolute; /* Absolute positioning */
+  top: 0; /* Distance from top */
+  left: 0; /* Distance from left */
+  height: 100%; /* Full height */
+  width: 100%; /* Full width */
+  display: none; /* Hide popup initially */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+.popup {
+  background-color: var(--light-color); /* Set background color */
+  padding: 30px 50px; /* Padding around popup content */
+  border-radius: 3px; /* Round corners */
+  text-align: center; /* Center text */
+  color: var(--primary-color); /* Set text color */
+  opacity: 100; /* Start with invisible popup */
+  transition: opacity var(--animation-duration) ease; /* Fade-in effect */
+}
+
+.popup.show {
+  opacity: 1; /* Show popup */
+}
+
+.popup button {
+  cursor: pointer; /* Pointer cursor on hover */
+  background-color: var(--secondary-color); /* Set background color */
+  color: var(--light-color); /* Set text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Padding around button text */
+  font-size: 16px; /* Set font size */
+  border-radius: 3px; /* Round corners */
+}
+
+.notification-container {
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  border-radius: 10px 10px 0 0; /* Round top corners */
+  padding: 15px 20px; /* Padding around notification content */
+  position: absolute; /* Absolute positioning */
+  bottom: -60px; /* Initial position below view */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition effect */
+  opacity: 0; /* Start with invisible notification */
+}
+
+.notification-container.show {
+  display: block; /* Show notification */
+  transform: translateY(-140px); /* Move notification up */
+  opacity: 1; /* Make notification visible */
+}
+
+.notification-container p {
+  margin: 0; /* Remove margin */
+}
+
+.carousel-item {
+  width: 600px; /* Fixed width for carousel items */
+  height: 400px; /* Fixed height for carousel items */
+  opacity: 0; /* Start with invisible carousel items */
+  transition: opacity var(--animation-duration) ease; /* Fade-in effect */
+}
+
+.carousel-item.active {
+  opacity: 1; /* Show active carousel item */
+}
+
+.fixed-size-image {
+  width: 600px; /* Fixed width for images */
+  height: 400px; /* Fixed height for images */
+  object-fit: cover; /* Ensure the image covers the area */
+  object-position: center; /* Center the image */
+}
+
+.carousel {
+  margin-bottom: 20px; /* Margin below the carousel */
+}
+
+.clock {
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: color 0.5s ease-in-out; /* Smooth color transition */
+}
+
+.clock p {
+  margin: 0;
+  padding: 0;
+}
+.clock:hover {
+  color: #f5a623; /* Change color on hover */
+}
+.clock-1 {
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: color 0.5s ease-in-out; /* Smooth color transition */
+}
+.clock-1 p {
+  margin: 15px;
+}
+.clock-1:hover {
+  color: #f5a623; /* Change color on hover */
+}
+
+@keyframes fadeInScaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+h1 {
+  margin: 20px 0 0; /* Margin around heading */
+  letter-spacing: 0.5rem; /* Space between letters */
+  text-transform: uppercase; /* Convert text to uppercase */
+  animation: fadeInScaleUp 1s ease-out; /* Apply animation */
+}

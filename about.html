@@ -1,0 +1,108 @@
+<!-- STUDENT NAME: BHUMIL PARATE & STUDENT NUMBER: 8994642 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery UI CSS for styling UI components -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <!-- Custom CSS for additional styling -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>About - Hangman Game</title>
+</head>
+
+<body>
+    <!-- Header section with navigation menu -->
+    <header>
+        <nav>
+            <ul>
+                <!-- Navigation links to different pages -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="hangman.html">Play Hangman</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content area with game information -->
+    <main class="container my-5">
+        <h1 class="mb-4">About Hangman</h1>
+        <p>The Hangman game is a classic word guessing game where you need to find the hidden word by guessing one
+            letter at a time. If you guess incorrectly too many times, you lose!</p>
+
+        <h2 class="mt-4">How to Play</h2>
+        <p>Press a letter key on your keyboard to guess a letter. If the letter is in the word, it will appear in its
+            correct position. If the letter is not in the word, a part of the hangman will be drawn. Try to guess the
+            word before the hangman is completely drawn!</p>
+
+        <!-- jQuery UI Accordion for game rules and scoring system -->
+        <div id="accordion" class="my-5">
+            <h3>Game Rules</h3>
+            <div>
+                <p>The Hangman game has a set of rules that you should follow to play effectively.</p>
+            </div>
+            <h3>Scoring System</h3>
+            <div>
+                <p>Your score is determined based on how quickly you guess the word and the number of incorrect guesses.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer section with copyright and clock display -->
+    <footer class="bg-primary text-light text-center py-3">
+        <p>&copy; 2024 Hangman Game. All rights reserved.</p>
+        <!-- Clock Display -->
+        <div id="clock" class="clock-1">
+            <p id="current-time"></p>
+        </div>
+    </footer>
+
+    <!-- jQuery library for DOM manipulation and effects -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI JavaScript for UI components like accordion -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <!-- Bootstrap Bundle with Popper for Bootstrap functionalities -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript for page functionalities -->
+    <script>
+        $(function () {
+            // Initialize jQuery UI Accordion for game rules and scoring system
+            $("#accordion").accordion({
+                heightStyle: "content"
+            });
+
+            // Initialize jQuery UI Tabs (if any tabs are used on this page)
+            $("#tabs").tabs();
+        });
+
+        // Function to update the clock display
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            // Update the clock element with the current time
+            document.getElementById('current-time').textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initialize the clock immediately
+        updateClock();
+    </script>
+</body>
+
+</html>
